@@ -1,0 +1,2 @@
+PVC Created for NFS:
+{{ .Values.csi.volumeAttributes }}

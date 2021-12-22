@@ -1,0 +1,15 @@
+pv:
+  capacity:
+    storage: 10Gi
+
+pvc:
+ resources:
+   requests:
+     storage: 10Gi
+
+csi:
+  driver: nfs.csi.k8s.io
+  volumeAttributes:
+    server: nfs-server
+    share: /
+

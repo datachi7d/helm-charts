@@ -1,0 +1,6 @@
+apiVersion: v2
+name: csi-driver-nfs-pvc
+description: csi-driver-nfs PVC creation
+type: application
+version: "0.0.1"
+appVersion: "3.0.0"
