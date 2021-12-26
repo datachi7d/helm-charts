@@ -3,6 +3,7 @@ pv:
     storage: 10Gi
 
 pvc:
+ enable: True
  resources:
    requests:
      storage: 10Gi

@@ -17,7 +17,7 @@ spec:
     readOnly: false
     volumeHandle: {{ include "csi-driver-nfs-pvc.fullname" . }}
     {{- toYaml .Values.csi | nindent 4 }}
-
+{{- if .Values.pvc.enable -}}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -32,3 +32,4 @@ spec:
     {{- toYaml .Values.pvc.resources | nindent 4 }}
   volumeName:  {{ include "csi-driver-nfs-pvc.fullname" . }}
   storageClassName: ""
+{{- end -}}
