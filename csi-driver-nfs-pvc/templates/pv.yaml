@@ -1,3 +1,4 @@
+{{- if .Values.pv.enable -}}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -17,6 +18,7 @@ spec:
     readOnly: false
     volumeHandle: {{ include "csi-driver-nfs-pvc.fullname" . }}
     {{- toYaml .Values.csi | nindent 4 }}
+{{- end -}}
 {{- if .Values.pvc.enable -}}
 ---
 kind: PersistentVolumeClaim
@@ -32,4 +34,20 @@ spec:
     {{- toYaml .Values.pvc.resources | nindent 4 }}
   volumeName:  {{ include "csi-driver-nfs-pvc.fullname" . }}
   storageClassName: ""
+{{- end -}}
+{{- if .Values.storageClass.enable -}}
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: {{ .Values.storageClass.name }}
+  labels:
+    {{- include "csi-driver-nfs-pvc.labels" . | nindent 4 }}
+parameters:
+  {{- toYaml .Values.csi.volumeAttributes | nindent 2 }}
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+mountOptions:
+  - hard
+  - nfsvers=4.1
 {{- end -}}

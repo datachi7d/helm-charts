@@ -1,4 +1,5 @@
 pv:
+  enable: True
   capacity:
     storage: 10Gi
 
@@ -7,6 +8,10 @@ pvc:
  resources:
    requests:
      storage: 10Gi
+
+storageClass:
+  enable: False
+  name: StorageClassName
 
 csi:
   driver: nfs.csi.k8s.io
