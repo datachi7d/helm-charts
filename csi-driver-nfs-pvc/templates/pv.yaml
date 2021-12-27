@@ -45,6 +45,7 @@ metadata:
     {{- include "csi-driver-nfs-pvc.labels" . | nindent 4 }}
 parameters:
   {{- toYaml .Values.csi.volumeAttributes | nindent 2 }}
+provisioner: {{ .Values.csi.driver }}
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
