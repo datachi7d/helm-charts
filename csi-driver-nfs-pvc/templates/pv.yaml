@@ -19,7 +19,7 @@ spec:
     volumeHandle: {{ include "csi-driver-nfs-pvc.fullname" . }}
     {{- toYaml .Values.csi | nindent 4 }}
 {{- end -}}
-{{- if .Values.pvc.enable -}}
+{{- if .Values.pvc.enable }}
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -35,7 +35,7 @@ spec:
   volumeName:  {{ include "csi-driver-nfs-pvc.fullname" . }}
   storageClassName: ""
 {{- end -}}
-{{- if .Values.storageClass.enable -}}
+{{- if .Values.storageClass.enable }}
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
