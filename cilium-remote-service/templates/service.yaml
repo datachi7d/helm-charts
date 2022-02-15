@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "cilium-remote-service.labels" . | nindent 4 }}
+  {{- toYaml .Values.metadata | nindent 2}}
+spec:
+  {{- toYaml .Values.spec | nindent 2 }}
